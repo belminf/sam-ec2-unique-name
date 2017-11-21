@@ -24,6 +24,11 @@ $ aws cloudformation deploy --template-file ${CFN_TEMPLATE} --stack-name ${S3_BU
 
 ```
 
+### AWS Config Parameters
+
+* `REGIONS` (default: `us-east-1`)- Comma-delimited list of regions (e.g., `us-east-1,us-west-2`)
+* `FAIL_EMPTY` (default: `1`)- Whether to fail on an empty tag value (`0` = False, anything else = True)
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE.txt](LICENSE.txt) for details.
