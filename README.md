@@ -25,10 +25,6 @@ $ aws cloudformation deploy --template-file ${CFN_TEMPLATE} --stack-name ${S3_BU
 
 ```
 
-### AWS Config Parameters
-
-* `FAIL_EMPTY` (default: `1`)- Whether to fail on an empty tag value (`0` = False, anything else = True)
-
 ## License
 
 This project is licensed under the MIT License. See [LICENSE.txt](LICENSE.txt) for details.
