@@ -44,12 +44,8 @@ def evaluate_compliance(configuration_item, rule_parameters):
             'annotation':       'Configuration item no longer exists',
         }
 
-    # Get raw configuration
-    raw_regions      = rule_parameters.get('REGIONS', 'us-east-1')
+    # Get fail empty configuration
     raw_fail_empty   = rule_parameters.get('FAIL_EMPTY', '1')
-
-    # Transform configuration
-    regions     = raw_regions.split(',')
     fail_empty  = False if raw_fail_empty.lower() in ('0', 'false', 'f') else True
 
     # Get name from this instance

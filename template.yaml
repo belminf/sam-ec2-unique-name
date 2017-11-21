@@ -1,5 +1,10 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
+Parameters:
+  FailEmpty:
+    Type: String
+    Description: 'Whether to fail on an empty "Name" tag'
+    Default: '1'
 Resources:
   ConfigEvalFunction:
     Type: AWS::Serverless::Function
@@ -20,3 +25,22 @@ Resources:
               Action:
                 - ec2:Describe*
               Resource: '*'
+  ConfigRule:
+    Type: 'AWS::Config::ConfigRule'
+    Properties: 
+      ConfigRuleName: ConfigRuleForEnforcingUniqueEC2Name
+      InputParameters: 
+        FAIL_EMPTY: !Ref FailEmpty
+      Source: 
+        Owner: 'CUSTOM_LAMBDA'
+        SourceDetails:
+          -
+            EventSource: 'aws.config'
+            MessageType: 'ConfigurationItemChangeNotification'
+        SourceIdentifier:
+          Fn::GetAtt: 
+            - ConfigEvalFunction
+            - Arn
+      Scope:
+        ComplianceResourceTypes: 
+          - 'AWS::EC2::Instance'
