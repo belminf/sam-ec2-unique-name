@@ -17,7 +17,7 @@ CFN_STACK=foobar            # CloudFormation stack name
 $ aws s3 mb s3://${S3_BUCKET} --region ${S3_REGION}
 
 # Package Lambda code and create CloudFormation template
-$ aws cloudformation package --template-file template.yaml  --output-template-file ${CFN_TEMPLATE} --s3-bucket ${S3_BUCKET}
+$ aws cloudformation package --template-file template.yaml --output-template-file ${CFN_TEMPLATE} --s3-bucket ${S3_BUCKET}
 
 # Deploy CloudFormation stack
 $ aws cloudformation deploy --template-file ${CFN_TEMPLATE} --stack-name ${S3_BUCKET} --capabilities CAPABILITY_IAM
